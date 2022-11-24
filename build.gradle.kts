@@ -6,8 +6,8 @@ plugins {
     `maven-publish`
 }
 
-group = "com.GitHub.MuXiu1997"
-version = "1.0-SNAPSHOT"
+group = "com.github.MuXiu1997"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
