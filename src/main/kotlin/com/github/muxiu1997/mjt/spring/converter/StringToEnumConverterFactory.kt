@@ -6,10 +6,10 @@ import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Convert [String] to [Enum]
- * 
+ *
  * Use the field or method annotated with the specific [annotationClass] on the [Enum] class to get the key,
  * if there is none of them, use the [Enum.name] as the key.
- * 
+ *
  * If the key is duplicated, will throw [IllegalArgumentException]
  */
 class StringToEnumConverterFactory(private val annotationClass: Class<out Annotation>) :

@@ -148,4 +148,3 @@ object BigDecimalUtils {
         return this?.map(selector)?.fold(BigDecimal.ZERO) { a, b -> a safeAdd b } ?: BigDecimal.ZERO
     }
 }
-
