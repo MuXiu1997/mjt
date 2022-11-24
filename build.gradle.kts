@@ -17,6 +17,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("javax.validation:validation-api:2.0.1.Final")
     implementation("org.apache.commons:commons-lang3:3.12.0")
+    @Suppress("GradlePackageUpdate")
+    implementation("org.springframework:spring-core:5.3.24")
 
     testImplementation(kotlin("test"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
