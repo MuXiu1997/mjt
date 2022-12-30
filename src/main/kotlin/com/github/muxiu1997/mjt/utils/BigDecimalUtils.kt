@@ -144,7 +144,6 @@ object BigDecimalUtils {
     @JvmStatic
     @Contract(pure = true)
     fun <T> Sequence<T>?.safeSumOf(selector: (T) -> Any?): BigDecimal {
-        1..2
         return this?.map(selector)?.fold(BigDecimal.ZERO) { a, b -> a safeAdd b } ?: BigDecimal.ZERO
     }
 }

@@ -12,25 +12,35 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 
 internal class BigDecimalUtilsTest {
-    private object NumberObject {
-        override fun toString(): String = "123.456"
-    }
-
     @Test
     fun getBigDecimalOrZero() {
-        assertEquals(BigDecimal("123"), BigDecimalUtils.getBigDecimalOrZero("123"))
-        assertEquals(BigDecimal("123.456"), BigDecimalUtils.getBigDecimalOrZero("123.456"))
-        assertEquals(BigDecimal("-123"), BigDecimalUtils.getBigDecimalOrZero("-123"))
-        assertEquals(BigDecimal("-123.456"), BigDecimalUtils.getBigDecimalOrZero("-123.456"))
-        assertEquals(BigDecimal.ZERO, BigDecimalUtils.getBigDecimalOrZero("NaN"))
-        assertEquals(BigDecimal("123"), BigDecimalUtils.getBigDecimalOrZero(123))
-        assertEquals(BigDecimal("123.456"), BigDecimalUtils.getBigDecimalOrZero(123.456))
-        assertEquals(BigDecimal("123.456"), BigDecimalUtils.getBigDecimalOrZero(123.456f))
-        assertEquals(BigDecimal("-123"), BigDecimalUtils.getBigDecimalOrZero(-123))
-        assertEquals(BigDecimal("-123.456"), BigDecimalUtils.getBigDecimalOrZero(-123.456))
-        assertEquals(BigDecimal("-123.456"), BigDecimalUtils.getBigDecimalOrZero(-123.456f))
-        assertEquals(BigDecimal.ZERO, BigDecimalUtils.getBigDecimalOrZero(null))
-        assertEquals(BigDecimal("123.456"), BigDecimalUtils.getBigDecimalOrZero(NumberObject))
+        val f = BigDecimalUtils::getBigDecimalOrZero
+        // Test input of null
+        assertEquals(BigDecimal.ZERO, f(null))
+
+        // Test input of BigDecimal
+        assertEquals(BigDecimal("123"), f(BigDecimal(123)))
+
+        // Test input of Number
+        assertEquals(BigDecimal("123"), f(123))
+        assertEquals(BigDecimal("-123"), f(-123))
+        assertEquals(BigDecimal("123.456"), f(123.456f))
+        assertEquals(BigDecimal("-123.456"), f(-123.456f))
+        assertEquals(BigDecimal("123.456"), f(123.456))
+        assertEquals(BigDecimal("-123.456"), f(-123.456))
+        assertEquals(BigDecimal("9223372036854775807"), f(9223372036854775807L))
+        assertEquals(BigDecimal("-9223372036854775807"), f(-9223372036854775807L))
+
+        // Test input of other types
+        assertEquals(BigDecimal("123"), f("123"))
+        assertEquals(BigDecimal("-123"), f("-123"))
+        assertEquals(BigDecimal("123.456"), f("123.456"))
+        assertEquals(BigDecimal("-123.456"), f("-123.456"))
+        assertEquals(BigDecimal("9223372036854775807"), f("9223372036854775807"))
+        assertEquals(BigDecimal("-9223372036854775807"), f("-9223372036854775807"))
+
+        // Test input that cannot be converted to BigDecimal
+        assertEquals(BigDecimal.ZERO, f("abc"))
     }
 
     @Test
