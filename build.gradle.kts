@@ -23,6 +23,7 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.12.0")
     compileOnly("javax.validation:validation-api:2.0.1.Final")
     compileOnly("org.springframework:spring-core:5.3.24")
+    compileOnly("org.springframework:spring-context:5.3.24")
     compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     testImplementation(kotlin("test"))
