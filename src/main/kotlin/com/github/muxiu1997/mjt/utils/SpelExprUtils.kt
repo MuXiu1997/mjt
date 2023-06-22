@@ -7,7 +7,7 @@ import org.springframework.expression.common.TemplateParserContext
 import org.springframework.expression.spel.standard.SpelExpressionParser
 import org.springframework.expression.spel.support.StandardEvaluationContext
 
-object SpelExpUtils {
+object SpelExprUtils {
     val parser = SpelExpressionParser()
     val beanResolver by lazy { BeanFactoryResolver(BeanFactoryGetter.getBeanFactory()) }
 
@@ -15,8 +15,8 @@ object SpelExpUtils {
 
     @JvmStatic
     @JvmOverloads
-    @JvmName("_parseExpression")
-    inline fun <reified T> parseExpression(
+    @JvmName("_evalExpr")
+    inline fun <reified T> evalExpr(
         expressionString: String,
         parserContext: ParserContext? = null,
         contextBlock: StandardEvaluationContext.() -> Unit = {},
@@ -29,11 +29,11 @@ object SpelExpUtils {
 
     @JvmStatic
     @JvmOverloads
-    inline fun parseExpression(
+    inline fun evalExpr(
         expressionString: String,
         parserContext: ParserContext? = null,
         contextBlock: StandardEvaluationContext.() -> Unit = {},
     ): Any? {
-        return parseExpression<Any>(expressionString, parserContext, contextBlock)
+        return evalExpr<Any>(expressionString, parserContext, contextBlock)
     }
 }
